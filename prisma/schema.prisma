@@ -21,6 +21,10 @@ model User {
   location       String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+
+  bookmarks BookMark[]
+
+  @@map("users")
 }
 
 model BookMark {
@@ -30,4 +34,9 @@ model BookMark {
   url         String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("bookmarks")
 }
